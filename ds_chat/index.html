@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="ds_chat_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ds_chat_files/libs/quarto-html/tabby.min.js"></script>
+<script src="ds_chat_files/libs/quarto-html/popper.min.js"></script>
+<script src="ds_chat_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="ds_chat_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ds_chat_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="ds_chat_files/libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
+
+  <meta name="author" content="Tom Prescott">
+  <meta name="dcterms.date" content="2025-06-20">
+  <title>LantanaVision</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="ds_chat_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="ds_chat_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="ds_chat_files/libs/revealjs/dist/theme/quarto-3c3e0b41ba4ebaf473a7e7b732db1262.css">
+  <link rel="stylesheet" href="custom.css">
+  <link href="ds_chat_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="ds_chat_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="ds_chat_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="ds_chat_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">LantanaVision</h1>
+  <p class="subtitle">Datasparq x Lantana Collective</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Tom Prescott 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-06-20</p>
+</section>
+<section>
+<section id="computer-vision-an-overview" class="title-slide slide level1 center">
+<h1>Computer Vision<br><em>An Overview</em></h1>
+
+</section>
+<section id="image-classification" class="slide level2">
+<h2>Image Classification</h2>
+<p>A simple task: given an image, produce a class label with a confidence score.</p>
+
+<img data-src="https://github.com/ultralytics/docs/releases/download/0/image-classification-examples.avif" class="r-stretch quarto-figure-center"><p class="caption">https://github.com/ultralytics/docs/releases/download/0/image-classification-examples.avif</p></section>
+<section id="object-detection" class="slide level2">
+<h2>Object Detection</h2>
+<p>A step beyond: given an image, identify the location and class of objects in an image, returning bounding boxes of classes with confidence scores.</p>
+
+<img data-src="https://github.com/ultralytics/docs/releases/download/0/object-detection-examples.avif" class="r-stretch quarto-figure-center"><p class="caption">https://github.com/ultralytics/docs/releases/download/0/object-detection-examples.avif</p></section>
+<section id="oriented-object-detection" class="slide level2">
+<h2>Oriented Object Detection</h2>
+<p>Similar to object detection; but why should bounding boxes be aligned with the axes of the image?</p>
+
+<img data-src="https://github.com/ultralytics/docs/releases/download/0/ships-detection-using-obb.avif" class="r-stretch quarto-figure-center"><p class="caption">https://github.com/ultralytics/docs/releases/download/0/ships-detection-using-obb.avif</p></section>
+<section id="pose-estimation" class="slide level2">
+<h2>Pose Estimation</h2>
+<p>Identify the location of specific keypoints in an image, when you need to know how an object is arranged.</p>
+
+<img data-src="https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/TLT/bodyposenet/nv_pose2d_1.png" class="r-stretch quarto-figure-center"><p class="caption">https://d29g4g2dyqv443.cloudfront.net/sites/default/files/akamai/TLT/bodyposenet/nv_pose2d_1.png</p></section>
+<section id="image-segmentation" class="slide level2">
+<h2>Image Segmentation</h2>
+<p>Instead of (oriented) bounding boxes, precisely <em>mask</em> the outline of individual objects.</p>
+
+<img data-src="https://github.com/ultralytics/docs/releases/download/0/instance-segmentation-examples.avif" class="r-stretch quarto-figure-center"><p class="caption">https://github.com/ultralytics/docs/releases/download/0/instance-segmentation-examples.avif</p></section>
+<section id="segmentation-semantic-vs-instance" class="slide level2">
+<h2>Segmentation:<br><em>Semantic</em> vs <em>Instance</em></h2>
+
+<img data-src="https://www.frontiersin.org/files/Articles/767836/fmedt-03-767836-HTML/image_m/fmedt-03-767836-g001.jpg" class="r-stretch quarto-figure-center"><p class="caption">Luo D, Zeng W, Chen J and Tang W (2021) Deep Learning for Automatic Image Segmentation in Stomatology and Its Clinical Application.</p></section>
+<section id="section" class="slide level2" data-background-iframe="https://segment-anything.com/" data-background-interactive="True">
+<h2></h2>
+</section></section>
+<section>
+<section id="use-cases" class="title-slide slide level1 center">
+<h1>Use cases</h1>
+<p>…from my past</p>
+</section>
+<section id="proper-science-electrotaxis" class="slide level2">
+<h2>Proper Science: Electrotaxis</h2>
+
+<img data-src="./images/electrotaxis.png" class="r-stretch quarto-figure-center"><p class="caption">Zhang, G., et al.&nbsp;Kindlin-1 Regulates Keratinocyte Electrotaxis</p></section>
+<section id="retail-object-detection" class="slide level2">
+<h2>Retail Object Detection</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><video data-src="images/retail.mp4" controls=""><a href="images/retail.mp4">Video</a></video></p>
+<figcaption>From NVidia</figcaption>
+</figure>
+</div>
+</section>
+<section id="crowds" class="slide level2">
+<h2>Crowds</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://github.com/MVIG-SJTU/AlphaPose/blob/master/docs/alphapose_17.gif?raw=true"></p>
+<figcaption>AlphaPose</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://cdn.prod.website-files.com/6479eab6eb2ed5e597810e9e/67ed54b554e20750616c788c_67ddb4eb56b84cd4b41735f2_Crowd_fig2.webp"></p>
+<figcaption>YOLOv11</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-1" class="slide level2" data-background-iframe="https://www.stereolabs.com/docs" data-background-interactive="True">
+<h2></h2>
+</section></section>
+<section id="another-use-case" class="title-slide slide level1 center">
+<h1>Another use case</h1>
+<p>…from my future</p>
+</section>
+
+<section>
+<section id="lantana-camara" class="title-slide slide level1 center" data-background-image="https://media.assettype.com/TNIE%2Fimport%2F2023%2F4%2F19%2Foriginal%2FPCCF_told_to_draft.jpg">
+<h1><em>Lantana camara</em></h1>
+<ul>
+<li class="fragment">Introduced to India by the EIC</li>
+<li class="fragment">Taken over 30% of prime elephant habitat, invaded over 50% of tiger reserves</li>
+<li class="fragment">Climate change will accelerate its spread</li>
+<li class="fragment">Reduces biodiversity: toxic to animals; outcompetes native plants</li>
+<li class="fragment">Elephants are left with nothing to eat</li>
+<li class="fragment"><em>Extremely</em> difficult to remove; the estimated cost of removal throughout India is c.£150bn</li>
+</ul>
+</section>
+<section id="lantana-camara-1" class="slide level2">
+<h2><em>Lantana camara</em></h2>
+
+<img data-src="https://imgs.mongabay.com/wp-content/uploads/sites/30/2020/08/14145530/f4_lantana_map_india-e1597397600489.png" class="r-stretch quarto-figure-center"><p class="caption">Ninad Mungi via Mongabay</p></section>
+<section id="lantana-camara-2" class="slide level2">
+<h2><em>Lantana camara</em></h2>
+<div class="r-stack">
+<p><img data-src="https://elephant-family.org/wp-content/uploads/2024/05/2048px-Lantana_camara_at_Cauvery_Wildlife_Sanctuary_2-768x576.jpg" class="fragment"></p>
+<p><img data-src="https://imgs.mongabay.com/wp-content/uploads/sites/30/2020/08/14145514/f2_phenotypes-e1597397436552.jpg" class="fragment"></p>
+<p><img data-src="https://www.cabidigitallibrary.org/cms/10.1079/cabicompendium.29771/asset/91c88659-e27c-4483-8d99-58b7e712ba89/assets/graphic/29771_05.jpg" class="fragment"></p>
+</div>
+</section>
+<section id="the-lantana-collective" class="slide level2">
+<h2>The Lantana Collective</h2>
+
+<img data-src="./images/lantana_collective.png" class="r-stretch quarto-figure-center"><p class="caption">https://www.thelantanacollective.org/</p></section>
+<section id="problem-statement" class="slide level2">
+<h2>Problem Statement</h2>
+<ul>
+<li class="fragment">There are limited resources to help identify and monitor the spread of Lantana</li>
+<li class="fragment">No one is mapping and monitoring at a global scale to understand the true extent of the issue and share learnings on how to manage it</li>
+<li class="fragment">At a local level the resources are not available to programmatically identify lantana from drone images and therefore it requires manual and time-consuming human review</li>
+<li class="fragment">Satellite data is not possible for users to interpret with the human eye as it is not visually engaging and understandable</li>
+</ul>
+</section></section>
+<section>
+<section id="global-lantana-monitoring-platform" class="title-slide slide level1 center">
+<h1>Global Lantana Monitoring Platform</h1>
+<p>Maximising the impact of Lantana removal</p>
+</section>
+<section id="data-inputs" class="slide level2">
+<h2>Data Inputs 📸</h2>
+<ul>
+<li class="fragment">⭐️ Drone image data - user upload (refreshed when new upload)</li>
+<li class="fragment">Satellite remote sensing data - open source scraped or via API (refreshed when new data available eg monthly)</li>
+<li class="fragment">Lidar data - tbc</li>
+<li class="fragment">User data eg account info and customisation</li>
+</ul>
+<h2>
+AI Engine 🤖
+</h2>
+<ul>
+<li class="fragment">Identify if 🌸 exists (granularity: global, country, state, ⭐️ 10 hectare)</li>
+<li class="fragment">Measure 🌸 metrics (eg biomass density, ⭐️ % ground cover)</li>
+<li class="fragment">Prediction of future spread - tbc</li>
+<li class="fragment">Identification of native species - tbc</li>
+</ul>
+</section>
+<section id="output" class="slide level2">
+<h2>Output 🌏</h2>
+<ul>
+<li class="fragment">Map with overlay of if 🌸 exists and metrics, with time lapse</li>
+<li class="fragment">Overlay of pre-defined prioritisation criteria</li>
+<li class="fragment">Users able to search location, zoom to scale and compare historical view with metrics</li>
+<li class="fragment">User customisation eg prioritisation criteria, removal costs</li>
+</ul>
+<h2>
+Action 🚜
+</h2>
+<ul>
+<li class="fragment">Prioritise areas for removal</li>
+<li class="fragment">Identify success of removal and if additional intervention is required</li>
+<li class="fragment">Evidence success of donations and business case for further investment</li>
+<li class="fragment">Identify land not affected and can be used for other purposes</li>
+</ul>
+</section></section>
+<section>
+<section id="prove-phase" class="title-slide slide level1 center">
+<h1>Prove Phase</h1>
+<p>Prove that Lantana can be identified in drone images. Develop the foundations and test the commercial proposition.</p>
+</section>
+<section id="where-are-we-now" class="slide level2">
+<h2>Where are we now?</h2>
+<ul>
+<li class="fragment"><em>Discover</em> step ✅</li>
+<li class="fragment"><em>Experiment</em> step ✅</li>
+<li class="fragment">We identified:
+<ul>
+<li class="fragment">the CV task;</li>
+<li class="fragment">where we’re going to start;</li>
+<li class="fragment">and how we’re going to go about it.</li>
+</ul></li>
+<li class="fragment">We were supplied with an initial dataset, which we assessed to see if we can get going.</li>
+<li class="fragment">We got going! But we stopped once we saw <em>promise</em>.</li>
+</ul>
+</section></section>
+<section>
+<section id="data" class="title-slide slide level1 center">
+<h1>Data</h1>
+<p>We were supplied with an initial dataset, which we assessed to see if we can get going.</p>
+</section>
+<section id="example-data" class="slide level2">
+<h2>Example data</h2>
+
+<img data-src="./images/Hulibanda_Checkdam_2.jpg" class="quarto-figure quarto-figure-center r-stretch" width="1000"></section>
+<section id="example-data-1" class="slide level2">
+<h2>Example data</h2>
+<p>Drone mosaic image with associated <strong>manual</strong> labelling (Lantana yes/no).</p>
+
+<img data-src="./images/eg_data.png" class="quarto-figure quarto-figure-center r-stretch" width="1000"></section></section>
+<section>
+<section id="tools" class="title-slide slide level1 center">
+<h1>Tools</h1>
+
+</section>
+<section id="section-2" class="slide level2" data-background-iframe="https://albumentations.ai/" data-background-interactive="True" data-background-color="white">
+<h2></h2>
+</section>
+<section id="section-3" class="slide level2" data-background-iframe="https://smp.readthedocs.io/en/latest/index.html" data-background-interactive="True">
+<h2></h2>
+</section></section>
+<section>
+<section id="preliminary-results" class="title-slide slide level1 center">
+<h1>Preliminary results</h1>
+<p>As default as possible!</p>
+<ul>
+<li class="fragment">Random 256x256 patches (rotation allowed)</li>
+<li class="fragment"><code>Unet</code> model (default hyperparameters)</li>
+<li class="fragment">Basic stitching results back together</li>
+</ul>
+</section>
+<section id="training-data-patches" class="slide level2">
+<h2>Training data: patches</h2>
+<p>Rows top to bottom:<br>Data; supplied mask; inferred confidence; thresholded prediction.</p>
+
+<img data-src="./images/seen_data.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="training-data-stitched" class="slide level2">
+<h2>Training data: stitched</h2>
+<ul>
+<li class="fragment">Predict all 256x256 patches (overlapping by 128 at a time)</li>
+<li class="fragment">Threshold at confidence: 0.5, 0.95</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./images/seen_stitched.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="unseen-data" class="slide level2">
+<h2>Unseen data</h2>
+<ul>
+<li class="fragment">Predict all 256x256 patches (overlapping by 128 at a time)</li>
+<li class="fragment">Threshold at confidence: 0.5, 0.95</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./images/unseen_stitched.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="quantification-training-data" class="slide level2">
+<h2>Quantification: training data</h2>
+<p>We used a weighted mean of the F1 score and binary cross-entropy (at 0.5 threshold) as the loss function when fitting.</p>
+<p><span class="math display">\[
+\mathrm{F1} = \frac{2}{\mathrm{recall}^{-1} + \mathrm{precision}^{-1}} = \frac{2TP}{2TP + FP + FN}
+\]</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Mid-confidence (0.5)</th>
+<th>High-confidence (0.95)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>64.21%</td>
+<td>80.91%</td>
+</tr>
+<tr class="even">
+<td>Sensitivity/Recall</td>
+<td>95.90%</td>
+<td>82.97%</td>
+</tr>
+<tr class="odd">
+<td>Specificity</td>
+<td>54.06%</td>
+<td>80.25%</td>
+</tr>
+<tr class="even">
+<td>Positive Predictive Value/Precision</td>
+<td>40.06%</td>
+<td>57.35%</td>
+</tr>
+<tr class="odd">
+<td>Negative Predictive Value</td>
+<td>97.63%</td>
+<td>93.64%</td>
+</tr>
+<tr class="even">
+<td>Jaccard Index/IoU</td>
+<td>0.3938</td>
+<td>0.5131</td>
+</tr>
+<tr class="odd">
+<td>F1 Score</td>
+<td>0.5651</td>
+<td>0.6782</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quantification-unseen" class="slide level2">
+<h2>Quantification: unseen</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Mid-confidence (0.5)</th>
+<th>High-confidence (0.95)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>60.75%</td>
+<td>66.32%</td>
+</tr>
+<tr class="even">
+<td>Sensitivity/Recall</td>
+<td>91.09%</td>
+<td>72.34%</td>
+</tr>
+<tr class="odd">
+<td>Specificity</td>
+<td>32.38%</td>
+<td>60.69%</td>
+</tr>
+<tr class="even">
+<td>Positive Predictive Value/Precision</td>
+<td>55.75%</td>
+<td>63.25%</td>
+</tr>
+<tr class="odd">
+<td>Negative Predictive Value</td>
+<td>79.53%</td>
+<td>70.12%</td>
+</tr>
+<tr class="even">
+<td>Jaccard Index/IoU</td>
+<td>0.5286</td>
+<td>0.5093</td>
+</tr>
+<tr class="odd">
+<td>F1 Score</td>
+<td>0.6916</td>
+<td>0.6749</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+<p>A simple, time-boxed investigation has produced a model artefact and training pipeline that demonstrates signal.</p>
+<p>Quantified inference on unseen data has shown that there is room for improvement in the quantitative match between predictions and labelled data.</p>
+<ul>
+<li class="fragment">What quality is high enough for our purposes?</li>
+<li class="fragment">How well would two experts match in their labelling? Can we achieve that level of agreement?</li>
+<li class="fragment">What would happen if a human validated and fed back model predictions?</li>
+</ul>
+</section>
+
+<section id="what-wed-like-to-do" class="title-slide slide level1 center">
+<h1>What we’d <em>like</em> to do</h1>
+<ul>
+<li class="fragment">Investigate different model architectures (made easy through the deep learning library we’re using)</li>
+<li class="fragment">Make sure the loss function is appropriate for our purposes</li>
+<li class="fragment">Investigate different data augmentation techniques</li>
+<li class="fragment">Use more than one training image!</li>
+<li class="fragment">Investigate different training hyperparameters and algorithm variants (e.g.&nbsp;learning rate scheduling, layer freezing/unfreezing)</li>
+<li class="fragment">Make use of cloud computing to make training on more data feasible</li>
+<li class="fragment">Use a less naive inference pipeline</li>
+</ul>
+</section>
+
+<section id="to-be-continued" class="title-slide slide level1 center" data-background-image="https://thegreatelephantmigration.org/cdn/shop/files/Screenshot_2024-11-05_at_18.25.11.png">
+<h1>To be<br>continued</h1>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="ds_chat_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="ds_chat_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="ds_chat_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="ds_chat_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'h.v',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

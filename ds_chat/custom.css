@@ -1,0 +1,5 @@
+/*-- scss:defaults --*/
+
+.custom-accent {
+  --r-main-color: rgb(212, 14, 10); /* Change this to your desired accent color */
+}
